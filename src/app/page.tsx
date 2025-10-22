@@ -7,7 +7,7 @@ export default function Home() {
      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
         <Card
            title="Classic Red Shirt"
-          image="/Images/shirt1.webp"
+          image="/images/shirt1.webp"
           price={45}
             description="A stylish red button-up shirt made from soft cotton. Perfect for both casual and office wear."
         />
