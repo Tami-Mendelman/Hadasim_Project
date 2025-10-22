@@ -1,28 +1,40 @@
-import Image from "next/image";
 import Card from "./components/Card/Card";
+export default async function Home() {
+  const res = await fetch("http://localhost:3000/api/cards", { cache: "no-store" });
 
-export default function Home() {
-  return (
-    
-     <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-        <Card
-           title="Classic Red Shirt"
-          image="/images/shirt1.webp"
-          price={45}
-            description="A stylish red button-up shirt made from soft cotton. Perfect for both casual and office wear."
-        />
-        <Card
-        title="Soft Gray Tee"
-          image="/images/shirt2.webp"
-          price={90}
-                    description="A comfortable gray t-shirt with a modern cut and soft fabric for everyday comfort."
-        />
-        <Card
-          title="Sporty Blue Tank"
-          image="/images/shirt3.webp"
-          price={100}
-            description="A breathable blue tank top for workouts or hot summer days. Lightweight and flexible."
-        />
+  if (!res.ok) {
+    return (
+      <div className="home-error">
+        <h2>Failed to load products</h2>
       </div>
+    );
+  }
+
+  const cards = await res.json();
+
+  if (!cards.length) {
+    return (
+      <div className="home-empty">
+        <h2>No products found in MongoDB</h2>
+        <p>Add some items to the 'cards' collection.</p>
+      </div>
+    );
+  }
+
+  return (
+    <section className="page-content">
+      <h1 className="home-title">Women's T-Shirts</h1>
+      <div className="home-container">
+        {cards.map((p: any) => (
+          <Card
+            key={p._id?.toString?.() ?? p.id ?? p.title}
+            title={p.title ?? "Untitled"}
+            image={p.image ?? "/images/placeholder.webp"}
+            price={p.price ?? 0}
+            description={p.description ?? ""}
+          />
+        ))}
+      </div>
+    </section>
   );
 }
