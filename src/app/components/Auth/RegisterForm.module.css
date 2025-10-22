@@ -1,0 +1,83 @@
+
+
+.form {
+  direction: rtl;
+  display: grid;
+  gap: 1rem;
+  border: 1px solid #43ec81;  
+  border-radius: 14px;
+  padding: 1.25rem;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field > span {
+  font-size: 0.95rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+.input {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #cbd5e1;   /* slate-300 */
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #111;          /* פוקוס כהה ברור */
+  box-shadow: 0 0 0 3px rgba(17,17,17,0.08);
+}
+
+/* הודעת שגיאה מתחת לשדה */
+.error {
+  color: #b91c1c;              /* אדום */
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+/* פעולות (כפתור + הודעת הצלחה) */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.submit {
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #444;
+  border-color: #444;
+}
+
+.success {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  font-size: 0.92rem;
+}
+
+/* הסרה של עימוד דו-עמודי: לא משתמשים ב-.row יותר */
+.row { display: block; }
