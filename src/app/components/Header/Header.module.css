@@ -65,14 +65,13 @@
   color: #fff;
 }
 
-/* מובייל */
 @media (max-width: 768px) {
   .burger {
     display: flex;
   }
   .nav {
     position: absolute;
-    inset-inline-start: 0; /* RTL/LTR-friendly */
+    inset-inline-start: 0; 
     inset-inline-end: 0;
     top: 56px;
     display: none;
@@ -104,7 +103,7 @@
 .siteName {
   display: inline-block;
 }
-/* כפתור שפועל כמו לינק */
+
 .asButton {
   background: transparent;
   border: 0;
@@ -112,7 +111,6 @@
   padding: 0.4rem 0.6rem;
 }
 
-/* מודאל */
 .overlay {
   position: fixed;
   inset: 0;

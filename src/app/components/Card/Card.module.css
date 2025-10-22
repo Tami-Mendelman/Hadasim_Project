@@ -1,15 +1,13 @@
-/* ===== Card.module.css ===== */
 
-/* כרטיס בסיסי */
 .container {
-  width: 280px;                 /* רוחב אחיד ונוח לכרטיס */
+  width: 280px;                 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.9rem;
   padding: 1rem;
   border-radius: 14px;
-  border: 1px solid #e5e7eb;    /* #ccc עדין */
+  border: 1px solid #e5e7eb;    
   background: #fff;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
@@ -20,71 +18,65 @@
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
-/* אזור התמונה */
 .cardImage {
   width: 100%;
-  aspect-ratio: 4 / 3;          /* יחס קבוע – כל התמונות באותו גובה ובלי חיתוך */
+  aspect-ratio: 4 / 3;        
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
-  background: #fafafa;          /* רקע עדין במקרה של שקיפות/רווחים */
+  background: #fafafa;         
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 6px;
 }
 
-/* התמונה עצמה – לא נחתכת */
 .cardImage img {
   width: 100%;
   height: 100%;
-  object-fit: contain;           /* מציג את כל התמונה ללא חיתוך */
+  object-fit: contain;         
   object-position: center;
   display: block;
 }
 
-/* תוכן הטקסט */
+
 .cardContent {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: .5rem;
-  text-align: center;            /* כמו בדוגמה ששלחת */
+  text-align: center;            
 }
 
-/* כותרת */
 .cardTitle {
   font-size: 1.1rem;
   line-height: 1.25;
   font-weight: 800;
-  color: #0f172a;                /* slate-900 */
+  color: #0f172a;                
   margin: .25rem 0 0;
 }
 
-/* תיאור */
+
 .cardDescription {
   font-size: .95rem;
   line-height: 1.55;
-  color: #6b7280;                /* gray-600 */
+  color: #6b7280;                
   margin: 0;
 }
 
-/* מחיר – בתחתית הכרטיס */
 .cardPrice {
   margin-top: .25rem;
   font-weight: 700;
   font-size: 1.05rem;
-  color: #111827;                /* gray-900 */
+  color: #111827;                
 }
 
-/* כפתור מועדפים (אם תוסיפי בעתיד) */
 .favButton {
   position: relative;
   right: 10px;
   top: 10px;
 }
 
-/* רספונסיביות קלה */
 @media (max-width: 480px) {
   .container {
     width: 94vw;
