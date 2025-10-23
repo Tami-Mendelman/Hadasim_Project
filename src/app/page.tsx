@@ -1,7 +1,14 @@
 export const runtime = "nodejs";
 import Card from "./components/Card/Card";
+import { headers } from "next/headers";
+
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/cards", { cache: "no-store" });
+  // const res = await fetch("http://localhost:3000/api/cards", { cache: "no-store" });
+  const h = await headers();
+const origin = `${h.get("x-forwarded-proto") ?? "https"}://${h.get("host")}`;
+const res = await fetch(`${origin}/api/cards`, { cache: "no-store" });
+const cards = await res.json();
+
   if (!res.ok) {
     return (
       <div className="home-error">
@@ -10,7 +17,7 @@ export default async function Home() {
     );
   }
 
-  const cards = await res.json();
+  // const cards = await res.json();
 
   if (!cards.length) {
     return (
