@@ -1,25 +1,20 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 import Card from "./components/Card/Card";
-import { fetchCards } from "./services/server/cards";
-
 
 export default async function Home() {
   // const res = await fetch("http://localhost:3000/api/cards", { cache: "no-store" });
-//   const h = await headers();
-// const origin = `${h.get("x-forwarded-proto") ?? "https"}://${h.get("host")}`;
-// const res = await fetch(`${origin}/api/cards`, { cache: "no-store" });
-// const cards = await res.json();
+  const base = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
+const res = await fetch(`${base}/api/cards`, { cache: "no-store" });
+  if (!res.ok) {
+    return (
+      <div className="home-error">
+        <h2>Failed to load products</h2>
+      </div>
+    );
+  }
 
-//   if (!res.ok) {
-//     return (
-//       <div className="home-error">
-//         <h2>Failed to load products</h2>
-//       </div>
-//     );
-//   }
-const cards = await fetchCards();
-  // const cards = await res.json();
+  const cards = await res.json();
 
   if (!cards.length) {
     return (
