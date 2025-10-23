@@ -1,7 +1,6 @@
 import Card from "./components/Card/Card";
 export default async function Home() {
   const res = await fetch("http://localhost:3000/api/cards", { cache: "no-store" });
-
   if (!res.ok) {
     return (
       <div className="home-error">
