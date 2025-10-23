@@ -1,74 +1,3 @@
-"use client";
-import { useEffect, useState } from "react";
-import { fetchCardsClient } from "./services/client/cards";
-import Card from "./components/Card/Card";
-
-type CardItem = {
-  _id?: string;
-  title?: string;
-  name?: string;
-  description?: string;
-  price?: number | string;
-  image?: string;
-};
-
-export default function HomePage() {
-  const [cards, setCards] = useState<CardItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const data = await fetchCardsClient();
-        if (!cancelled) setCards(Array.isArray(data) ? data : []);
-      } catch (e: any) {
-        if (!cancelled) setError(e?.message || "שגיאה בטעינת נתונים");
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, []);
-
-  if (loading) return <div>טוען…</div>;
-  if (error)   return <div>שגיאה: {error}</div>;
-
-  return (
-    <main style={{ padding: 16 }}>
-      <h1>עמוד הבית</h1>
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-        gap: 16
-      }}>
-        {cards.map((c) => {
-          const title = c.title ?? c.name ?? "ללא כותרת";
-          const description = c.description ?? "";
-          const price = typeof c.price === "string" ? Number(c.price) : (c.price ?? 0);
-          const image = c.image ?? "/images/placeholder.png";
-          return (
-            <Card
-              key={String(c._id ?? title)}
-              title={title}
-              description={description}
-              price={price}
-              image={image}
-            />
-          );
-        })}
-      </div>
-    </main>
-  );
-}
-
-
-
-
-
-
-
 // "use client";
 
 // export const runtime = "nodejs";
@@ -115,3 +44,16 @@ export default function HomePage() {
 //     </section>
 //   );
 // }
+// src/app/page.tsx
+export default function Home() {
+  return (
+    <section className="page-content">
+      <h1 className="home-title">Women's T-Shirts</h1>
+      {/* קומפוננטת לקוח שאחראית על הטעינה והרינדור */}
+      <CardsList />
+    </section>
+  );
+}
+
+// שימי לב ליבוא למטה כדי לא “ללכלך” מלמעלה
+import CardsList from "./components/CardsList";
